@@ -1,0 +1,112 @@
+-- I have done many tasks while learning SQL. There some of them.
+-- Tasks were in 3 Lever: Beginner, Intermediate, Advanced
+
+-- in this file i share with you 32 tasks of Beginner Level and their answers/sql codes. 
+
+-- it can contain some german words. 
+
+Aufgabe 1: Select all columns from the `customers` table.
+SELECT * FROM customers;
+
+Aufgabe 2: Select the `name` and `city` columns from `customers`.
+SELECT name, city FROM customers;
+
+Aufgabe 3: Select distinct city values from the `customers` table.
+SELECT DISTINCT city FROM customers;
+
+Aufgabe 4: Select the first 5 rows from the `customers` table.
+SELECT TOP 5 * FROM customers;
+
+Aufgabe 5: Select all customers where age is greater than 30.
+SELECT name, age FROM customers WHERE age > 30;
+
+Aufgabe 6: Select all customers from Berlin.
+SELECT name FROM customers WHERE city = 'Berlin';
+
+Aufgabe 7: Select customers whose name starts with 'A'.
+SELECT name FROM customers WHERE name LIKE 'A%';
+
+Aufgabe 8: Select customers from Berlin, Hamburg or München.
+SELECT * FROM customers WHERE city IN ('Berlin', 'Hamburg', 'München');
+
+Aufgabe 9: Select customers not from Berlin.
+SELECT * FROM customers WHERE NOT city = 'Berlin';
+
+Aufgabe 10: Select customers whose age is between 25 and 35.
+SELECT * FROM customers WHERE age BETWEEN 25 AND 35;
+
+Aufgabe 11: Select customers where city is not null.
+SELECT * FROM customers WHERE city IS NOT NULL;
+
+Aufgabe 12: Select customers where city is null.
+SELECT * FROM customers WHERE city IS NULL;
+
+Aufgabe 13: Select customers whose age is less than 20 or greater than 60.
+SELECT * FROM customers WHERE age < 20 OR age > 60;
+
+Aufgabe 14: Select customers whose name does not start with 'M'.
+SELECT * FROM customers WHERE name NOT LIKE 'M%';
+
+Aufgabe 15: Order customers by name ascending.
+SELECT name FROM customers ORDER BY name ASC;
+
+Aufgabe 16: Order customers by age descending.
+SELECT * FROM customers ORDER BY age DESC;
+
+Aufgabe 17: Select all distinct cities, ordered descending.
+SELECT DISTINCT city FROM customers ORDER BY city DESC;
+
+Aufgabe 18: Select customers where name length is 5.
+SELECT * FROM customers WHERE LEN(name) = 5;
+
+Aufgabe 19: Select customers from cities starting with 'B' and age > 40.
+SELECT * FROM customers WHERE city LIKE 'B%' AND age > 40;
+
+Aufgabe 20: Count all customers.
+SELECT COUNT(*) FROM customers;
+
+Aufgabe 21: Count how many city values exist (non-null).
+SELECT COUNT(city) FROM customers;
+
+Aufgabe 22: Count distinct city names.
+SELECT COUNT(DISTINCT city) FROM customers;
+
+Aufgabe 23: Calculate average age.
+SELECT AVG(age) FROM customers;
+
+Aufgabe 24: Get maximum age.
+SELECT MAX(age) FROM customers;
+
+Aufgabe 25: Get minimum age.
+SELECT MIN(age) FROM customers;
+
+Aufgabe 26: Get sum of all ages.
+SELECT SUM(age) FROM customers;
+
+Aufgabe 27: Group customers by city and count them.
+SELECT city, COUNT(*) FROM customers GROUP BY city;
+
+Aufgabe 28: Group by city and only show groups with more than 3 customers.
+SELECT city, COUNT(customer_id) FROM customers GROUP BY city HAVING
+COUNT(customer_id) > 3;
+
+Aufgabe 29: Show number of customers and max age per city.
+SELECT city, COUNT(customer_id), MAX(age) FROM customers GROUP BY city;
+
+Aufgabe 30: Select customers whose age is above average.
+SELECT * FROM customers WHERE age > (SELECT AVG(age) FROM customers);
+
+Aufgabe 31: Show cities where the average customer age is over 40.
+SELECT city, COUNT(*) AS customer_count, AVG(age) AS average_age
+FROM customers
+GROUP BY city
+HAVING AVG(age) > 40;
+
+Aufgabe 32: Select customers whose city occurs only once in the table.
+SELECT * FROM customers
+WHERE city IN (
+ SELECT city
+ FROM customers
+ GROUP BY city
+ HAVING COUNT(*) = 1
+);
